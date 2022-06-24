@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> res;
+    
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n = graph.size();
+        
+        vector<int> visited(n,0);
+        
+        
+        for(int i=0;i<n;i++)
+        {   
+            if(visited[i]==2 || !solver(graph,visited,i))
+                res.push_back(i);
+            
+        }
+        return res;
+    }
+    
+    bool solver(vector<vector<int>>&graph,vector<int>&visited,int i)
+    {   visited[i]=1;
+        
+        for(int j=0;j<graph[i].size();j++)
+        {
+            if((visited[graph[i][j]]==0 && solver(graph,visited,graph[i][j])) || visited[graph[i][j]]==1)
+                return true;
+        }
+     
+     visited[i]=2;
+     return false;
+    }
+};
