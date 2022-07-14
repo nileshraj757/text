@@ -1,0 +1,42 @@
+Here in this problem first we check the root node in inorder vect (i.e preorder[0]), say index i of inorder. then divide the left part of i in left subtree and right part 
+of i in right subtree of root i.
+recurse the subpart as left and right subtree and contineuosly increase the index of root in preorder(i.e rootid). so that index used in left tree should be skipped while calculatin
+subtree of root.
+
+LEETCODE = #105
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int n = preorder.size();
+        int rootid =0;
+        
+        return solver(preorder,inorder,rootid,0,n-1);
+    }
+    
+    TreeNode* solver(vector<int>& preorder, vector<int>& inorder,int& rootid,int left,int right)
+    {
+        if(left>right)
+            return NULL;
+        int rooter = left;
+        while(inorder[rooter]!=preorder[rootid])
+            rooter++;
+        rootid++;
+        TreeNode* root = new TreeNode(inorder[rooter]);
+        root->left = solver(preorder,inorder,rootid,left,rooter-1);
+        root->right = solver(preorder,inorder,rootid,rooter+1,right);
+        return root;
+    }
+};
