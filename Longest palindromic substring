@@ -1,0 +1,35 @@
+#5
+
+class Solution {
+public:
+    int length =0;
+    string ans="";
+    string longestPalindrome(string s) {
+
+        int n= s.size();
+        for(int i=0;i<s.size();i++)
+        {
+            ispalindrome(s,i,i,n);
+            ispalindrome(s,i,i+1,n);
+        }
+        
+        return ans;
+    }
+    
+    void ispalindrome(string& st,int left,int right,int &n)
+    {
+        while(left>=0 && right<n && st[left]==st[right] )
+        {
+            left--;
+            right++;
+            
+        }
+        if(length<right-left+1)
+            {
+                ans = st.substr(left,right-left+1);
+             length = right-left+1;
+        
+            
+            }
+    }
+};
