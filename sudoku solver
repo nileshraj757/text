@@ -1,0 +1,64 @@
+class Solution {
+public:
+    int n;
+    void solveSudoku(vector<vector<char>>& board) {
+         n = board.size();        
+        solver(board,0,0);
+        return;
+    }
+    
+    
+    bool solver(vector<vector<char>>& board,int i,int j)
+    {
+        if(i>=n)
+            return true;
+        if(j>=n){
+           return solver(board,i+1,0);
+        }
+        if(board[i][j]!='.')
+            {
+               return solver(board,i,j+1);
+            }
+        
+        
+        for(char c='1';c<='9';c++)
+        {
+            if(checker(board,i,j,c))
+            {
+                board[i][j]=c;
+                if(solver(board,i,j+1))
+                    return true;
+                board[i][j]='.';
+            }
+        }
+        return false;
+    }
+    
+    bool checker(vector<vector<char>>& board,int i,int j,char c)
+    {
+        int x = i-i%3;
+        int y = j-j%3;
+        
+        for(int row =0;row<9;row++)
+        {
+            if(board[row][j]==c)
+                return false;
+        }
+        
+        for(int col =0;col<9;col++)
+        {
+            if(board[i][col]==c)
+                return false;
+        }
+        
+        for(int row=x;row<x+3;row++)
+        {
+            for(int col =y;col<y+3;col++)
+            {
+                if(board[row][col]==c)
+                    return false;
+            }
+        }
+            return true;
+    }
+};
