@@ -1,0 +1,30 @@
+#39
+
+
+class Solution {
+public:
+    vector<vector<int>> res;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        vector<int> t;
+        solver(candidates,target,t,0);
+        return res;
+    }
+    
+    void solver(vector<int>& c,int tg,vector<int> t,int start)
+    {   
+        if(!tg)
+            res.push_back(t);
+        
+        for(int i=start;i<c.size();i++)
+        {
+            if(c[i]<=tg && tg>=0)
+            {
+                t.push_back(c[i]);
+                cout<<tg<<"-";
+                solver(c,tg-c[i],t,i);
+                t.pop_back();
+            }
+        }
+    }
+};
