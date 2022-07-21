@@ -31,3 +31,28 @@ public:
         
     }
 };
+
+
+
+
+second method 
+
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n=height.size();
+        int ans=0;
+        int level=0;
+        int l=0,r = n-1;
+        while(l<r)
+        {
+            int lower = height[height[l]<height[r]?l++:r--];
+            level = max(level,lower);
+            
+            if(lower<level)
+                ans+=level-lower;
+        }
+        return ans;
+    }
+};
