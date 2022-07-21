@@ -1,0 +1,51 @@
+# 51
+
+class Solution {
+public:
+    vector<vector<string>>res;
+    vector<vector<string>> solveNQueens(int n) {
+        
+        vector<string> v(n,string(n,'.'));
+        solver(n,v,0);
+        return res;
+    }
+    
+    void solver(int n,vector<string>v,int row)
+    {
+        if(row==n)
+        {
+            res.push_back(v);
+            return ;
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            if(isvalid(i,row,v))
+            {
+                v[row][i]='Q';
+                solver(n,v,row+1);
+                v[row][i]='.';
+            }
+        }
+    }
+    
+    bool isvalid(int i,int row,vector<string> v)
+    {
+        int step=0;
+        for(int r = row;r>=0;r--)
+        {
+            int col=i;
+            if(v[r][col]=='Q')
+                return false;
+            
+            if(col+step<v.size() && v[r][col+step]=='Q')
+                return false;
+            if(col-step>=0 && v[r][col-step]=='Q')
+                return false;
+            step++;
+            
+        }
+        return true;
+        
+    }
+};
