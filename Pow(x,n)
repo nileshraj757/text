@@ -1,0 +1,25 @@
+# 50
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+       
+        double ans = pos(x,n);
+        if(n>0)
+            return ans;
+        else
+            return 1/ans;
+    }
+    
+    double pos(double x,int n)
+    { 
+        if(n==0)
+            return 1;
+        double temp = pos(x,n/2);
+        
+        if(n%2==0)
+            return temp*temp;
+        else
+            return x*temp*temp;
+    }
+};
