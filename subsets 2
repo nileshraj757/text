@@ -1,0 +1,31 @@
+# 90
+
+
+class Solution {
+public:
+    vector<vector<int>> res;
+    set<vector<int>> set;
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> v;
+        solver(nums,v,0,n);
+        for(auto x:set)
+            res.push_back(x);
+        return res;
+    }
+    
+    
+    void solver(vector<int>&nums,vector<int> v,int i,int n)
+    {
+        if(i==n)
+        {
+            sort(v.begin(),v.end());
+            set.insert(v);
+            return;
+        }
+        
+        solver(nums,v,i+1,n);
+        v.push_back(nums[i]);
+        solver(nums,v,i+1,n);
+    }
+};
