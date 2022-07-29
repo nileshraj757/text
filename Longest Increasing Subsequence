@@ -1,0 +1,87 @@
+# 300
+
+
+Method 1 by Binary search -------O(NlogN)
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n =nums.size();
+        if(n==0)
+            return 0;
+        vector<int> v(n);
+        int length=1;
+        v[0]=nums[0];
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]<v[0])
+                v[0]=nums[i];
+            else if(v[length-1]<nums[i])
+            {
+                v[length++]=nums[i];
+            }
+            else{
+                int k=-1;
+                int j=length-1;
+                while(j-k>1)
+                {
+                    int mid=k+(j-k)/2;
+                    
+                    if(v[mid]>=nums[i])
+                        j=mid;
+                    else
+                        k=mid;
+                }
+                v[j]=nums[i];
+            }
+        }
+        
+        return length;
+    }
+};
+
+Method 2 by DP-------O(N^2)
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n =nums.size();
+      vector<int> v(n,1);
+       int res=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                if(nums[j]<nums[i])
+                {
+                    v[i]=max(v[i],v[j]+1);
+                }
+            }
+            
+            res = max(v[i],res);
+        }
+        
+        return res;
+    }
+};
+
+Method 3 by Lower_bound iterator ------O(NlogN)
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> res;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            auto it = lower_bound(res.begin(),res.end(),nums[i]);
+            if(it==res.end())
+                res.push_back(nums[i]);
+            else
+                *it = nums[i];
+        }
+        
+        
+        return res.size();
+    }
