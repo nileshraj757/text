@@ -1,0 +1,2 @@
+
+if x and y are two numbers then number of set bits in (x||y) + (x & y) = number of set bits in x + number of set bits in y.
