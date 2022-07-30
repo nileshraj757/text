@@ -1,0 +1,45 @@
+
+# 474
+
+
+class Solution {
+public:
+    int t[101][101];
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<pair<int,int>> count;
+        
+        for(int i=0;i<strs.size();i++)
+        {
+            int ones=0;
+            int zeros=0;
+            for(int j=0;j<strs[i].size();j++)
+            {
+                if(strs[i][j]=='0')
+                    zeros++;
+                else if(strs[i][j]=='1')
+                    ones++;
+            }
+            count.push_back({zeros,ones});
+        }
+        
+        return solver(count,m,n);
+    }
+    
+    
+    int solver(vector<pair<int,int>>&count,int m,int n)
+    {
+        for(int k=0;k<count.size();k++)
+        {
+            for(int i=m;i>=count[k].first;i--)
+            {
+                for(int j=n;j>=count[k].second;j--)
+                {
+                    t[i][j]=max(t[i][j],1+t[i-count[k].first][j-count[k].second]);
+                }
+            }
+        }
+        
+        
+        return t[m][n];
+    }
+};
