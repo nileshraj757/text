@@ -1,2 +1,13 @@
 
 if x and y are two numbers then number of set bits in (x||y) + (x & y) = number of set bits in x + number of set bits in y.
+
+- (a^b)^c = a^(b^c) used to find unique number in the array of two duplicate numbers. #LeetCode (260)
+
+To convert into gray, we will take the number and perform XOR after shifting the number 1 bit to the right.
+
+- Qno # 1178
+
+
+
+
+
