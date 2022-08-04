@@ -9,7 +9,7 @@ To convert into gray, we will take the number and perform XOR after shifting the
 
 if in an array XOR of elements bw indices i and j (0<=i<j<arr.size) is zero then XOR of elements X (arr[i]^arr[i+1]^....arr[k-1]) is equal to XOR of elementes Y (arr[k]^arr[k+1]^...arr[j])
 
-
+- to find whether number has atmost one set bit  =  if((a & (a-1))==0) then true;
 
 
 
