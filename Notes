@@ -7,6 +7,8 @@ To convert into gray, we will take the number and perform XOR after shifting the
 
 - Qno # 1178
 
+if in an array XOR of elements bw indices i and j (0<=i<j<arr.size) is zero then XOR of elements X (arr[i]^arr[i+1]^....arr[k-1]) is equal to XOR of elementes Y (arr[k]^arr[k+1]^...arr[j])
+
 
 
 
