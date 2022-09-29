@@ -11,5 +11,7 @@ if in an array XOR of elements bw indices i and j (0<=i<j<arr.size) is zero then
 
 - to find whether number has atmost one set bit  =  if((a & (a-1))==0) then true;
 
+if a^b  = c then a = c^b, b = c^a;
+
 
 
